@@ -12,4 +12,10 @@ export class PostListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // posts = [
+  //   { title: 'First Post', content: 'First post\'s content.' },
+  //   { title: 'Second Post', content: 'Second post\'s content.' },
+  //   { title: 'Third Post', content: 'Third post\'s content.' }
+  // ];
+  posts = [];
 }
