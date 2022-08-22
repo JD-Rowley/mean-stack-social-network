@@ -6,3 +6,11 @@ textarea {
 mat-spinner {
   margin: auto;
 }
+
+button[type="button"] {
+  margin: auto 1rem;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
