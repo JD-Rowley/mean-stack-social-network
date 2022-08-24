@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { map, Subject } from "rxjs";
 
 import { Post } from "./post.model";
+import { FormControl } from "@angular/forms";
 
 @Injectable({providedIn: 'root'})
 export class PostsService {
@@ -11,6 +12,25 @@ export class PostsService {
   private postsUpdated = new Subject<Post[]>();
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  requiredFileType( ...type: string[] ) {
+    return function (control: FormControl) {
+      const file = control.value;
+      if(file) {
+        const extension = file.name.split('.')[1].toLowerCase();
+        console.log(extension);
+        for(let i = 0; i <= type.length; i++) {
+          if(i === extension.toLowerCase()) {
+            return {
+              requiredFileType: true
+            };
+          }
+          return null;
+        }
+      }
+      return null;
+    };
+  }
 
   getPosts() {
     this.http.get<{message: string, posts: any}>('http://localhost:3000/api/posts')

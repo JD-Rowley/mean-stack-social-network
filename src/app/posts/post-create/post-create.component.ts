@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Post } from '../post.model';
-import { mimeType } from './mime-type.validator';
+// import { mimeType } from './mime-type.validator';
 
 import { PostsService } from '../posts.service';
 
@@ -25,6 +25,7 @@ export class PostCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // const fileType: string = 'jpg' || 'jpeg' || 'png';
     this.form = new FormGroup({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)],
@@ -33,8 +34,11 @@ export class PostCreateComponent implements OnInit {
         validators: [Validators.required],
       }),
       image: new FormControl(null, {
-        validators: [Validators.required],
-        asyncValidators: [mimeType]
+        validators: [
+          Validators.required,
+          this.postsService.requiredFileType('jpg', 'jpeg', 'png')
+        ],
+        // asyncValidators: [mimeType]
       }),
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -66,7 +70,7 @@ export class PostCreateComponent implements OnInit {
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({ image: file });
-    this.form.get('image').updateValueAndValidity();
+    this.form.get("image").updateValueAndValidity();
     console.log(file);
     console.log(this.form);
     const reader = new FileReader();
