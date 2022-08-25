@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Post } from '../post.model';
-// import { mimeType } from './mime-type.validator';
 
 import { PostsService } from '../posts.service';
 
@@ -25,7 +24,6 @@ export class PostCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // const fileType: string = 'jpg' || 'jpeg' || 'png';
     this.form = new FormGroup({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)],
@@ -37,8 +35,7 @@ export class PostCreateComponent implements OnInit {
         validators: [
           Validators.required,
           this.postsService.requiredFileType('jpg', 'jpeg', 'png')
-        ],
-        // asyncValidators: [mimeType]
+        ]
       }),
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
