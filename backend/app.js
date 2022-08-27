@@ -1,12 +1,13 @@
 const path = require('path');
 const express = require('express');
+const cors = require("cors");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const postsRoutes = require("./routes/posts");
 const userRoutes = require("./routes/user");
 
-const app = express();
+const app = express().use('*', cors());
 
 mongoose.connect(
   "mongodb+srv://jd-rowley:Sh4tteredgrave@cluster0.mdyvs.mongodb.net/node-angular?retryWrites=true&w=majority"
