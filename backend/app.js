@@ -10,7 +10,7 @@ const userRoutes = require("./routes/user");
 const app = express().use('*', cors());
 
 mongoose.connect(
-  "mongodb+srv://jd-rowley:Sh4tteredgrave@cluster0.mdyvs.mongodb.net/node-angular?retryWrites=true&w=majority"
+  "mongodb+srv://jd-rowley:" + process.env.MONGO_ATLAS_PW + "@cluster0.mdyvs.mongodb.net/node-angular?retryWrites=true&w=majority"
 ).then(() => {
   console.log('Connected to database...');
 }).catch(() => {
