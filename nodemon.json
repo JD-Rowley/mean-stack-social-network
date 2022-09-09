@@ -1,6 +1,6 @@
 {
   "env": {
     "MONGO_ATLAS_PW": "Sh4tteredgrave",
-    "JWT_KEY": "it's a secret to everyone"
+    "JWT_KEY": "its_a_secret_to_everyone"
   }
 }

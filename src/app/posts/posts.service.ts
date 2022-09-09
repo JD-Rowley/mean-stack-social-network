@@ -20,8 +20,7 @@ export class PostsService {
     return function (control: FormControl) {
       const file = control.value;
       if(file) {
-        const extension = file.name.split('.')[1].toLowerCase();
-        console.log(extension);
+        const extension = file.type.split('/')[1].toLowerCase();
         for(let i = 0; i <= type.length; i++) {
           if(i === extension.toLowerCase()) {
             return {
